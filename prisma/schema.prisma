@@ -3,6 +3,65 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Petitoner {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  rank    String
+  type    String
+  service String
+
+  Case Case[]
+}
+
+model Case {
+  id      Int    @id @default(autoincrement())
+  type    String
+  year    String
+  subject String
+  brief   String
+
+  petitioner  Petitoner @relation(fields: [petitonerId], references: [id])
+  petitonerId Int
+
+  petitionerLawyer  String
+  respondentLawyers String[]
+
+  respondants String[]
+
+  finalPrayers   String[]
+  interimPrayers Json?
+
+  interimPrayerDate DateTime?
+  noticeDate        DateTime
+  counterDate       DateTime?
+  rejoinderDate     DateTime?
+  lastListedDate    DateTime?
+  nextListingDate   DateTime?
+  finalOrderDate    DateTime?
+
+  favour Boolean
+
+  // if no
+  LTAFilled          Boolean?
+  dateOfLTA          DateTime?
+  dateOfCompliance   DateTime?
+  dateOfLegalOpinion DateTime?
+  executionFilled    Boolean?
+  executionStatus    String?
+
+  Court   Court? @relation(fields: [courtId], references: [id])
+  courtId Int?
+}
+
+model Court {
+  id       Int     @id @default(autoincrement())
+  type     String
+  location String?
+  cases    Case[]
 }
