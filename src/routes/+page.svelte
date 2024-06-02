@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { Progress } from '$lib/components/ui/progress';
-	import { Input } from '$lib/components/ui/input/index.js';
 
 	import Dropdown from '$lib/components/Dropdown.svelte';
+	import Table from '$lib/components/Table.svelte';
+	import Date from '$lib/components/Date.svelte';
 
 	import parameters from '../parameters.json';
 
@@ -29,7 +30,7 @@
 	let action_service_default = 'all';
 </script>
 
-<section class="px-4 py-4 flex flex-col gap-4">
+<section class="px-4 py-4 flex flex-col gap-4 h-full">
 	<!-- case section -->
 	<section class="flex gap-4">
 		<!-- case progress -->
@@ -171,6 +172,92 @@
 					options={parameters['ARM SERVICE']}
 				></Dropdown>
 			</div>
+		</section>
+	</section>
+
+	<!-- table and info section -->
+	<section class="flex gap-4 h-full">
+		<Table />
+
+		<!-- info display block -->
+
+		<section class="flex flex-col gap-4 w-[40%] h-full">
+			<section
+				class="bg-muted-foreground bg-opacity-25 border-[1px] border-secondary border-opacity-25 rounded-xl flex justify-between py-4 px-24 text-xl"
+			>
+				<button>
+					<i class="fa-solid fa-plus"></i>
+				</button>
+				<button>
+					<i class="fa-solid fa-upload"></i>
+				</button>
+				<button>
+					<i class="fa-solid fa-x"></i>
+				</button>
+			</section>
+
+			<!-- info -->
+
+			<section
+				class="bg-muted-foreground bg-opacity-25 border-[1px] border-secondary border-opacity-25 rounded-xl flex flex-col gap-2 items-center py-4 h-full"
+			>
+				<span class="text-xl font-semibold">Extra Info</span>
+
+				<div>
+					<span class="text-lg font-semibold tracking-wider">cases in the coming week</span>
+					<div class="flex justify-around">
+						<div class="flex flex-col gap-4 items-center">
+							<span>settled</span>
+							<span>0</span>
+						</div>
+						<div class="flex flex-col items-center gap-4">
+							<span>total</span>
+							<span>0</span>
+						</div>
+						<div class="flex flex-col items-center gap-4">
+							<span>pending</span>
+							<span>0</span>
+						</div>
+					</div>
+				</div>
+				<!-- sep -->
+				<div>
+					<span class="text-lg font-semibold tracking-wider">cases in the coming month</span>
+					<div class="flex justify-around">
+						<div class="flex flex-col gap-4 items-center">
+							<span>settled</span>
+							<span>0</span>
+						</div>
+						<div class="flex flex-col items-center gap-4">
+							<span>total</span>
+							<span>0</span>
+						</div>
+						<div class="flex flex-col items-center gap-4">
+							<span>pending</span>
+							<span>0</span>
+						</div>
+					</div>
+				</div>
+				<!-- sep -->
+				<div class="flex flex-col items-center w-full gap-2">
+					<span class="text-lg font-semibold tracking-wider">cases in the custom range</span>
+					<div class="flex justify-around w-[60%]">
+						<div class="flex flex-col gap-4 items-center">
+							<span>settled</span>
+							<span>0</span>
+						</div>
+						<div class="flex flex-col items-center gap-4">
+							<span>total</span>
+							<span>0</span>
+						</div>
+						<div class="flex flex-col items-center gap-4">
+							<span>pending</span>
+							<span>0</span>
+						</div>
+					</div>
+					<Date />
+				</div>
+			</section>
 		</section>
 	</section>
 </section>

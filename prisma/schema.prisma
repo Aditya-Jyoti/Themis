@@ -29,6 +29,7 @@ model Petitoner {
 
 model Case {
   id      Int    @id @default(autoincrement())
+  number  String @unique
   type    String
   year    String
   subject String
