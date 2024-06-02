@@ -27,7 +27,7 @@
 	</main>
 {:else}
 	<main class="flex flex-col min-h-screen w-full bg-primary text-primary-foreground font-main">
-		<section class="mx-auto w-[70%]">
+		<section class="mx-auto min-w-[75%]">
 			<Navbar />
 			<div class="flex-grow bg-primary">
 				<slot />
